@@ -1,451 +1,1480 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>بازی‌های ما | ZYVARO</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: #030305;
-            color: white;
-            font-family: Tahoma, Arial, sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* نورهای پس‌زمینه */
-
-        body::before {
-            content: "";
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: #7c3aed;
-            filter: blur(170px);
-            opacity: .18;
-            top: -220px;
-            right: -150px;
-            z-index: -1;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: #a855f7;
-            filter: blur(160px);
-            opacity: .12;
-            bottom: -180px;
-            left: -120px;
-            z-index: -1;
-        }
-
-        /* منو */
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-
-            height: 78px;
-            padding: 0 7%;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            background: rgba(3, 3, 5, .82);
-            backdrop-filter: blur(16px);
-
-            border-bottom: 1px solid rgba(168, 85, 247, .15);
-        }
-
-        .logo {
-            color: #c084fc;
-            font-size: 25px;
-            font-weight: 900;
-            letter-spacing: 5px;
-
-            text-shadow:
-                0 0 10px #a855f7,
-                0 0 30px rgba(168, 85, 247, .45);
-        }
-
-        .menu {
-            display: flex;
-            gap: 28px;
-        }
-
-        .menu a {
-            color: #aaa;
-            text-decoration: none;
-            transition: .3s;
-        }
-
-        .menu a:hover {
-            color: #d8b4fe;
-            text-shadow: 0 0 15px #a855f7;
-        }
-
-        /* عنوان */
-
-        .hero {
-            text-align: center;
-            padding: 100px 20px 60px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>بازی‌های ما | ZYVARO</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#030305;
+    color:white;
+    font-family:Tahoma,Arial,sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+
+    --main-color:#a855f7;
+    --dark-color:#7c3aed;
+    --light-color:#d8b4fe;
+    --soft-color:#c084fc;
+}
+
+/* =========================
+   پس‌زمینه
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:var(--dark-color);
+    filter:blur(170px);
+    opacity:.18;
+    top:-220px;
+    right:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:400px;
+    height:400px;
+    background:var(--main-color);
+    filter:blur(160px);
+    opacity:.12;
+    bottom:-180px;
+    left:-120px;
+    z-index:-1;
+}
+
+/* =========================
+   منو
+========================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    min-height:78px;
+    padding:12px 5%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+
+    background:rgba(3,3,5,.82);
+    backdrop-filter:blur(16px);
+
+    border-bottom:
+        1px solid
+        rgba(168,85,247,.15);
+}
+
+.logo{
+    color:var(--soft-color);
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:5px;
+
+    text-shadow:
+        0 0 10px var(--main-color),
+        0 0 30px var(--main-color);
+}
+
+.menu{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:16px;
+    flex-wrap:wrap;
+}
 
-        .hero h1 {
-            font-size: clamp(55px, 9vw, 100px);
-            font-weight: 900;
+.menu a{
+    color:#aaa;
+    text-decoration:none;
+    transition:.3s;
+}
 
-            background: linear-gradient(
-                90deg,
-                #ffffff,
-                #d8b4fe,
-                #a855f7,
-                #7c3aed
-            );
+.menu a:hover{
+    color:var(--light-color);
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+    text-shadow:
+        0 0 15px var(--main-color);
+}
 
-            filter: drop-shadow(
-                0 0 30px rgba(168, 85, 247, .35)
-            );
-        }
+/* =========================
+   جستجو
+========================= */
 
-        .line {
-            width: 85px;
-            height: 3px;
+.search-box{
+    position:relative;
+}
 
-            margin: 25px auto;
+.search-input{
+    width:145px;
+    height:34px;
 
-            background: #a855f7;
+    padding:0 34px 0 12px;
 
-            box-shadow:
-                0 0 12px #a855f7,
-                0 0 30px #7c3aed;
-        }
+    border-radius:20px;
 
-        .hero p {
-            color: #888;
-            font-size: 18px;
-        }
+    border:
+        1px solid
+        rgba(168,85,247,.35);
 
-        /* بازی‌ها */
+    outline:none;
 
-        .games {
-            max-width: 1100px;
-            margin: 20px auto 100px;
-            padding: 0 25px;
+    background:rgba(20,10,30,.75);
 
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
+    color:white;
 
-        .game-card {
-            min-height: 390px;
+    font-family:Tahoma,Arial,sans-serif;
 
-            padding: 35px;
+    transition:.3s;
+}
 
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+.search-input::placeholder{
+    color:#777;
+}
 
-            position: relative;
-            overflow: hidden;
+.search-input:focus{
+    width:190px;
 
-            border-radius: 24px;
+    border-color:var(--main-color);
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(168, 85, 247, .12),
-                    rgba(8, 8, 12, .95)
-                );
+    box-shadow:
+        0 0 15px
+        rgba(168,85,247,.25);
+}
 
-            border: 1px solid rgba(168, 85, 247, .2);
+.search-icon{
+    position:absolute;
 
-            box-shadow:
-                inset 0 0 40px rgba(168, 85, 247, .03);
+    right:11px;
+    top:7px;
 
-            transition: .4s;
-        }
+    color:var(--soft-color);
 
-        .game-card::before {
-            content: "";
+    pointer-events:none;
+}
 
-            pos
-            ition: absolute;
+/* =========================
+   دکمه رنگ
+========================= */
 
-            width: 260px;
-            height: 260px;
+.color-box{
+    position:relative;
+}
 
-            top: -100px;
-            left: 50%;
+.color-button{
+    width:38px;
+    height:34px;
 
-            transform: translateX(-50%);
+    border-radius:10px;
 
-            background: #a855f7;
+    border:
+        1px solid
+        rgba(168,85,247,.4);
 
-            filter: blur(110px);
+    background:rgba(20,10,30,.8);
 
-            opacity: .12;
-        }
+    color:white;
 
-        .game-card::after {
-            content: "∞";
+    cursor:pointer;
 
-            position: absolute;
+    font-size:18px;
 
-            top: 35px;
-            left: 50%;
+    transition:.3s;
+}
 
-            transform: translateX(-50%);
+.color-button:hover{
+    border-color:var(--main-color);
 
-            font-size: 150px;
-            font-weight: 900;
+    box-shadow:
+        0 0 18px
+        rgba(168,85,247,.3);
+}
 
-            color: #a855f7;
-            opacity: .09;
+/* =========================
+   پنل رنگ
+========================= */
 
-            text-shadow: 0 0 50px #a855f7;
-        }
+.color-panel{
+    position:absolute;
 
-        .game-card:hover {
-            transform: translateY(-12px);
+    top:45px;
+    right:0;
 
-            border-color: rgba(168, 85, 247, .65);
+    width:245px;
 
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, .55),
-                0 0 35px rgba(168, 85, 247, .16);
-        }
+    padding:16px;
 
-        .status {
-            position: relative;
-            z-index: 2;
+    border-radius:15px;
 
-            width: fit-content;
+    background:rgba(8,6,15,.98);
 
-            padding: 6px 12px;
-            margin-bottom: 15px;
+    border:
+        1px solid
+        var(--main-color);
 
-            border-radius: 20px;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.5),
+        0 0 25px
+        rgba(168,85,247,.15);
 
-            color: #d8b4fe;
-            background: rgba(168, 85, 247, .1);
+    display:none;
+}
 
-            border: 1px solid rgba(168, 85, 247, .3);
+.color-panel.show{
+    display:block;
+}
 
-            font-size: 13px;
-        }
+.color-panel-title{
+    color:#ddd;
+    font-size:13px;
+    margin-bottom:12px;
+}
 
-        .game-card h2 {
-            position: relative;
-            z-index: 2;
+/* =========================
+   رنگ‌های نئونی آماده
+========================= */
 
-            font-size: 42px;
-            letter-spacing: 3px;
+.neon-title{
+    color:#999;
+    font-size:12px;
+    margin-bottom:9px;
+}
 
-            color: white;
+.neon-colors{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:15px;
+    flex-wrap:wrap;
+}
 
-            text-shadow:
-                0 0 15px rgba(168, 85, 247, .35);
-        }
+.neon-color{
+    width:31px;
+    height:31px;
 
-        .game-card p {
-            position: relative;
-            z-index: 2;
+    border-radius:50%;
 
-            color: #888;
-            line-height: 2;
+    border:
+        2px solid
+        rgba(255,255,255,.4);
 
-            margin: 12px 0 25px;
-        }
+    cursor:pointer;
 
-        .game-button {
-            position: relative;
-            z-index: 2;
+    transition:.25s;
+}
 
-            width: fit-content;
+.neon-color:hover{
+    transform:scale(1.2);
+}
 
-            padding: 12px 25px;
+.neon-color.green{
+    background:#39ff14;
+    box-shadow:0 0 14px #39ff14;
+}
 
-            border-radius: 9px;
+.neon-color.blue{
+    background:#00e5ff;
+    box-shadow:0 0 14px #00e5ff;
+}
 
-            background: linear-gradient(
-                135deg,
-                #7c3aed,
-                #a855f7
-            );
+.neon-color.red{
+    background:#ff1744;
+    box-shadow:0 0 14px #ff1744;
+}
 
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
+.neon-color.pink{
+    background:#ff00ff;
+    box-shadow:0 0 14px #ff00ff;
+}
 
-            transition: .3s;
+.neon-color.yellow{
+    background:#ffff00;
+    box-shadow:0 0 14px #ffff00;
+}
 
-            box-shadow:
-                0 0 20px rgba(168, 85, 247, .2);
-        }
+/* =========================
+   انتخاب رنگ دلخواه
+========================= */
 
-        .game-button:hover {
-            transform: translateY(-3px);
+.color-picker{
+    width:100%;
+    height:45px;
 
-            box-shadow:
-                0 0 35px rgba(168, 85, 247, .5);
-        }
+    padding:0;
 
-        /* فوتر */
+    border:0;
 
-        footer {
-            text-align: center;
-            padding: 40px 20px;
+    background:none;
 
-            color: #555;
+    cursor:pointer;
+}
 
-            border-top: 1px solid rgba(168, 85, 247, .12);
-        }
+/* =========================
+   RGB
+========================= */
 
-        footer span {
-            color: #a855f7;
-        }
+.rgb-title{
+    color:#999;
+    font-size:12px;
+    margin-top:10px;
+    margin-bottom:7px;
+}
 
-        /* موبایل */
+.rgb-row{
+    display:flex;
+    gap:6px;
+}
 
-        @media (max-width: 700px) {
+.rgb-input{
+    width:33%;
 
-            nav {
-                padding: 0 5%;
-            }
+    padding:8px 4px;
 
-            .menu {
-                gap: 12px;
-            }
+    border-radius:7px;
 
-            .menu a {
-                font-size: 13px;
-            }
+    border:1px solid #333;
 
-            .games {
-                grid-template-columns: 1fr;
-            }
+    background:#111;
 
-            .game-card {
-                min-height: 360px;
-            }
+    color:white;
 
-            .game-card h2 {
-                font-size: 34px;
-            }
-        }
-    </style>
+    text-align:center;
+
+    outline:none;
+}
+
+.rgb-input:focus{
+    border-color:var(--main-color);
+}
+
+/* =========================
+   بازگردانی
+========================= */
+
+.reset-color{
+    width:100%;
+
+    margin-top:10px;
+
+    padding:8px;
+
+    border:
+        1px solid
+        #444;
+
+    border-radius:8px;
+
+    background:#171717;
+
+    color:#bbb;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.reset-color:hover{
+    border-color:var(--main-color);
+    color:white;
+}
+
+/* =========================
+   عنوان صفحه
+========================= */
+
+.hero{
+    text-align:center;
+    padding:100px 20px 60px;
+}
+
+.hero h1{
+    font-size:
+        clamp(
+            55px,
+            9vw,
+            100px
+        );
+
+    font-weight:900;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        var(--light-color),
+        var(--main-color),
+        var(--dark-color)
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    filter:
+        drop-shadow(
+            0 0 30px
+            rgba(168,85,247,.35)
+        );
+}
+
+.line{
+    width:85px;
+    height:3px;
+
+    margin:25px auto;
+
+    background:var(--main-color);
+
+    box-shadow:
+        0 0 12px var(--main-color),
+        0 0 30px var(--dark-color);
+}
+
+.hero p{
+    color:#888;
+    font-size:18px;
+}
+
+/* =========================
+   بازی‌ها
+========================= */
+
+.games{
+    max-width:1100px;
+
+    margin:
+        20px auto
+        100px;
+
+    padding:
+        0 25px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:30px;
+}
+
+.game-card{
+    min-height:390px;
+
+    padding:35px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    position:relative;
+    overflow:hidden;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(168,85,247,.12),
+            rgba(8,8,12,.95)
+        );
+
+    border:
+        1px solid
+        rgba(168,85,247,.2);
+
+    box-shadow:
+        inset 0 0 40px
+        rgba(168,85,247,.03);
+
+    transition:.4s;
+}
+
+.game-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+    height:260px;
+
+    top:-100px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    background:var(--main-color);
+
+    filter:blur(110px);
+
+    opacity:.12;
+}
+
+.game-card::after{
+    content:"∞";
+
+    position:absolute;
+
+    top:35px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size:150px;
+    font-weight:900;
+
+    color:var(--main-color);
+
+    opacity:.09;
+
+    text-shadow:
+        0 0 50px
+        var(--main-color);
+}
+
+.game-card:hover{
+    transform:
+        translateY(-12px);
+
+    border-color:
+        rgba(168,85,247,.65);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.55),
+
+        0 0 35px
+        rgba(168,85,247,.16);
+}
+
+.status{
+    position:relative;
+    z-index:2;
+
+    width:fit-content;
+
+    padding:6px 12px;
+
+    margin-bottom:15px;
+
+    border-radius:20px;
+
+    color:var(--light-color);
+
+    background:
+        rgba(168,85,247,.1);
+
+    border:
+        1px solid
+        rgba(168,85,247,.3);
+
+    font-size:13px;
+}
+
+.game-card h2{
+    position:relative;
+    z-index:2;
+
+    font-size:42px;
+
+    letter-spacing:3px;
+
+    color:white;
+
+    text-shadow:
+        0 0 15px
+        rgba(168,85,247,.35);
+}
+
+.game-card p{
+    position:relative;
+    z-index:2;
+
+    color:#888;
+
+    line-height:2;
+
+    margin:
+        12px 0
+        25px;
+}
+
+.game-button{
+    position:relative;
+    z-index:2;
+
+    width:fit-content;
+
+    padding:
+        12px 25px;
+
+    border-radius:9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--dark-color),
+            var(--main-color)
+        );
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+    box-shadow:
+        0 0 20px
+        rgba(168,85,247,.2);
+}
+
+.game-button:hover{
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 0 35px
+        rgba(168,85,247,.5);
+}
+
+/* =========================
+   فوتر
+========================= */
+
+footer{
+    text-align:center;
+
+    padding:40px 20px;
+
+    color:#555;
+
+    border-top:
+        1px solid
+        rgba(168,85,247,.12);
+}
+
+footer span{
+    color:var(--main-color);
+}
+
+/* =========================
+   موبایل
+========================= */
+
+@media(max-width:700px){
+
+    nav{
+        padding:12px 4%;
+        align-items:flex-start;
+    }
+
+    .menu{
+        gap:8px;
+    }
+
+    .menu a{
+        font-size:12px;
+    }
+
+    .search-input{
+        width:95px;
+    }
+
+    .search-input:focus{
+        width:125px;
+    }
+
+    .games{
+        grid-template-columns:1fr;
+    }
+
+    .game-card{
+        min-height:360px;
+    }
+
+    .game-card h2{
+        font-size:34px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- منوی سایت -->
+<!-- =========================
+     منوی سایت
+========================= -->
 
-    <nav>
+<nav>
 
-        <div class="logo">
-            ZYVARO
+    <div class="logo">
+        ZYVARO
+    </div>
+
+    <div class="menu">
+
+        <a href="index.html">
+            خانه
+        </a>
+
+        <a href="games.html">
+            🎮 بازی‌ها
+        </a>
+
+        <a href="index.html#about">
+            👤 درباره ما
+        </a>
+
+        <a href="index.html#news">
+            📰 اخبار
+        </a>
+
+        <!-- جستجو -->
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔎
+            </span>
+
+            <input
+                id="searchInput"
+                class="search-input"
+                type="text"
+                placeholder="جستجو..."
+            >
+
         </div>
 
-        <div class="menu">
+        <!-- انتخاب رنگ -->
 
-            <a href="index.html">
-                خانه
-            </a>
+        <div class="color-box">
 
-            <a href="games.html">
-                🎮 بازی‌ها
-            </a>
+            <button
+                id="colorButton"
+                class="color-button"
+                type="button"
+            >
+                🎨
+            </button>
 
-            <a href="index.html#about">
-                👤 درباره ما
-            </a>
+            <div
+                id="colorPanel"
+                class="color-panel"
+            >
 
-            <a href="index.html#news">
-                📰 اخبار
-            </a>
+                <div class="color-panel-title">
+                    رنگ سایت
+                </div>
 
-        </div>
+                <div class="neon-title">
+                    رنگ‌های نئونی آماده
+                </div>
 
-    </nav>
+                <div class="neon-colors">
 
+                    <button
+                        class="neon-color green"
+                        data-color="#39ff14"
+                        title="سبز نئونی"
+                        type="button"
+                    ></button>
 
-    <!-- عنوان صفحه -->
+                    <button
+                        class="neon-color blue"
+                        data-color="#00e5ff"
+                        title="آبی نئونی"
+                        type="button"
+                    ></button>
 
-    <section class="hero">
+                    <button
+                        class="neon-color red"
+                        data-color="#ff1744"
+                        title="قرمز نئونی"
+                        type="button"
+                    ></button>
 
-        <h1>
-            بازی‌های ما
-        </h1>
+                    <button
+                        class="neon-color pink"
+                        data-color="#ff00ff"
+                        title="صورتی نئونی"
+                        type="button"
+                    ></button>
 
-        <div class="line"></div>
+                    <button
+                        class="neon-color yellow"
+                        data-color="#ffff00"title="زرد نئونی"
+                        type="button"
+                    ></button>
 
-        <p>
-            وارد دنیای بازی‌های ZYVARO شو.
-        </p>
+                </div>
 
-    </section>
+                <div class="neon-title">
+                    رنگ دلخواه
+                </div>
 
+                <input
+                    id="colorPicker"
+                    class="color-picker"
+                    type="color"
+                    value="#a855f7"
+                >
 
-    <!-- کارت بازی‌ها -->
+                <div class="rgb-title">
+                    RGB
+                </div>
 
-    <section class="games">
+                <div class="rgb-row">
 
-        <div class="game-card">
+                    <input
+                        id="redInput"
+                        class="rgb-input"
+                        type="number"
+                        min="0"
+                        max="255"
+                        value="168"
+                        placeholder="R"
+                    >
 
-            <div class="status">
-                به‌زودی
+                    <input
+                        id="greenInput"
+                        class="rgb-input"
+                        type="number"
+                        min="0"
+                        max="255"
+                        value="85"
+                        placeholder="G"
+                    >
+
+                    <input
+                        id="blueInput"
+                        class="rgb-input"
+                        type="number"
+                        min="0"
+                        max="255"
+                        value="247"
+                        placeholder="B"
+                    >
+
+                </div>
+
+                <button
+                    id="resetColor"
+                    class="reset-color"
+                    type="button"
+                >
+                    بازگردانی رنگ
+                </button>
+
             </div>
 
-            <h2>
-                INFINITE
-            </h2>
-
-            <p>اولین بازی ZYVARO در راه است.
-                اطلاعات بیشتر به‌زودی منتشر خواهد شد.
-            </p>
-
-            <a
-                href="#"
-                class="game-button"
-            >
-                به‌زودی 🚀
-            </a>
-
         </div>
 
-    </section>
+    </div>
+
+</nav>
 
 
-    <!-- فوتر -->
+<!-- =========================
+     عنوان
+========================= -->
 
-    <footer>
+<section class="hero">
 
-        © 2026
-        <span>ZYVARO</span>
-        — Game Studio
+    <h1>
+        بازی‌های ما
+    </h1>
 
-    </footer>
+    <div class="line"></div>
+
+    <p>
+        وارد دنیای بازی‌های ZYVARO شو.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     بازی‌ها
+========================= -->
+
+<section class="games">
+
+    <div class="game-card">
+
+        <div class="status">
+            به‌زودی
+        </div>
+
+        <h2>
+            INFINITE
+        </h2>
+
+        <p>
+            اولین بازی ZYVARO در راه است.
+            اطلاعات بیشتر به‌زودی منتشر خواهد شد.
+        </p>
+
+        <a
+            href="#"
+            class="game-button"
+        >
+            به‌زودی 🚀
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     فوتر
+========================= -->
+
+<footer>
+
+    © 2026
+
+    <span>
+        ZYVARO
+    </span>
+
+    — Game Studio
+
+</footer>
+
+
+<script>
+
+/* =========================
+   عناصر
+========================= */
+
+const colorButton =
+    document.getElementById(
+        "colorButton"
+    );
+
+const colorPanel =
+    document.getElementById(
+        "colorPanel"
+    );
+
+const colorPicker =
+    document.getElementById(
+        "colorPicker"
+    );
+
+const redInput =
+    document.getElementById(
+        "redInput"
+    );
+
+const greenInput =
+    document.getElementById(
+        "greenInput"
+    );
+
+const blueInput =
+    document.getElementById(
+        "blueInput"
+    );
+
+
+/* =========================
+   باز و بسته شدن پنل
+========================= */
+
+colorButton.addEventListener(
+    "click",
+    function(event){
+
+        event.stopPropagation();
+
+        colorPanel.classList.toggle(
+            "show"
+        );
+
+    }
+);
+
+
+colorPanel.addEventListener(
+    "click",
+    function(event){
+
+        event.stopPropagation();
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function(){
+
+        colorPanel.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+/* =========================
+   HEX به RGB
+========================= */
+
+function hexToRgb(hex){
+
+    hex =
+        hex.replace("#","");
+
+    return {
+
+        r:parseInt(
+            hex.substring(0,2),
+            16
+        ),
+
+        g:parseInt(
+            hex.substring(2,4),
+            16
+        ),
+
+        b:parseInt(
+            hex.substring(4,6),
+            16
+        )
+
+    };
+
+}/* =========================
+   تغییر رنگ سایت
+========================= */
+
+function applyColor(hex){
+
+    const rgb =
+        hexToRgb(hex);
+
+    const darkR =
+        Math.max(
+            0,
+            rgb.r - 45
+        );
+
+    const darkG =
+        Math.max(
+            0,
+            rgb.g - 45
+        );
+
+    const darkB =
+        Math.max(
+            0,
+            rgb.b - 45
+        );
+
+    const lightR =
+        Math.min(
+            255,
+            rgb.r + 40
+        );
+
+    const lightG =
+        Math.min(
+            255,
+            rgb.g + 40
+        );
+
+    const lightB =
+        Math.min(
+            255,
+            rgb.b + 40
+        );
+
+    const softR =
+        Math.min(
+            255,
+            rgb.r + 20
+        );
+
+    const softG =
+        Math.min(
+            255,
+            rgb.g + 20
+        );
+
+    const softB =
+        Math.min(
+            255,
+            rgb.b + 20
+        );
+
+
+    document.body.style.setProperty(
+        "--main-color",
+        hex
+    );
+
+    document.body.style.setProperty(
+        "--dark-color",
+        `rgb(${darkR},${darkG},${darkB})`
+    );
+
+    document.body.style.setProperty(
+        "--light-color",
+        `rgb(${lightR},${lightG},${lightB})`
+    );
+
+    document.body.style.setProperty(
+        "--soft-color",
+        `rgb(${softR},${softG},${softB})`
+    );
+
+
+    redInput.value =
+        rgb.r;
+
+    greenInput.value =
+        rgb.g;
+
+    blueInput.value =
+        rgb.b;
+
+    colorPicker.value =
+        hex;
+
+
+    localStorage.setItem(
+        "zyvaroColor",
+        hex
+    );
+
+}
+
+
+/* =========================
+   رنگ‌های نئونی آماده
+========================= */
+
+document
+.querySelectorAll(
+    ".neon-color"
+)
+.forEach(
+    function(button){
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                applyColor(
+                    this.dataset.color
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================
+   انتخاب رنگ دلخواه
+========================= */
+
+colorPicker.addEventListener(
+    "input",
+    function(){
+
+        applyColor(
+            this.value
+        );
+
+    }
+);
+
+
+/* =========================
+   RGB
+========================= */
+
+function applyRGB(){
+
+    let r =
+        Number(
+            redInput.value
+        );
+
+    let g =
+        Number(
+            greenInput.value
+        );
+
+    let b =
+        Number(
+            blueInput.value
+        );
+
+
+    if(Number.isNaN(r)){
+        r = 0;
+    }
+
+    if(Number.isNaN(g)){
+        g = 0;
+    }
+
+    if(Number.isNaN(b)){
+        b = 0;
+    }
+
+
+    r =
+        Math.max(
+            0,
+            Math.min(
+                255,
+                r
+            )
+        );
+
+    g =
+        Math.max(
+            0,
+            Math.min(
+                255,
+                g
+            )
+        );
+
+    b =
+        Math.max(
+            0,
+            Math.min(
+                255,
+                b
+            )
+        );
+
+
+    const hex =
+        "#" +
+        [r,g,b]
+        .map(
+            function(value){
+
+                return value
+                .toString(16)
+                .padStart(
+                    2,
+                    "0"
+                );
+
+            }
+        )
+        .join("");
+
+
+    applyColor(hex);
+
+}
+
+
+redInput.addEventListener(
+    "input",
+    applyRGB
+);
+
+greenInput.addEventListener(
+    "input",
+    applyRGB
+);
+
+blueInput.addEventListener(
+    "input",
+    applyRGB
+);
+
+
+/* =========================
+   بازگردانی رنگ
+========================= */
+
+document
+.getElementById(
+    "resetColor"
+)
+.addEventListener(
+    "click",
+    function(){
+
+        applyColor(
+            "#a855f7"
+        );
+
+    }
+);
+
+
+/* =========================
+   رنگ ذخیره شده
+========================= */
+
+const savedColor =
+    localStorage.getItem(
+        "zyvaroColor"
+    );
+
+if(savedColor){
+
+    applyColor(
+        savedColor
+    );
+
+}
+
+
+/* =========================
+   جستجو
+========================= */
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+searchInput.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key !== "Enter"
+        ){
+            return;
+        }
+
+
+        const query =
+            this.value
+            .trim()
+            .toLowerCase();
+
+
+        if(!query){
+            return;
+        }
+
+
+        if(
+            query === "خانه" ||
+            query === "home"
+        ){
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        if(
+            query === "بازی" ||
+            query === "بازی ها" ||
+            query === "بازی‌ها" ||
+            query === "games"
+        ){
+
+            window.location.href =
+                "games.html";
+
+            return;
+
+        }
+
+
+        if(
+            query === "درباره" ||
+            query === "درباره ما" ||
+            query === "about"
+        ){
+
+            window.location.href =
+                "index.html#about";
+
+            return;
+
+        }
+
+
+        if(
+            query === "اخبار" ||
+            query === "خبر" ||
+            query === "news"
+        ){
+
+            window.location.href =
+                "index.html#news";
+
+            return;
+
+        }
+
+
+        if(
+            query === "infinite"
+        ){
+
+            document
+            .querySelector(
+                ".game-card"
+            )
+            .scrollIntoView({
+                behavior:"smooth"
+            });
+
+            return;
+
+        }
+
+
+        alert(
+            "موردی پیدا نشد 😅"
+        );
+
+    }
+);
+
+</script>
 
 </body>
 </html>
