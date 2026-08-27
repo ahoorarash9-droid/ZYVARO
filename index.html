@@ -25,6 +25,7 @@
         }
 
         /* نورهای گیمینگ */
+
         body::before,
         body::after {
             content: "";
@@ -54,6 +55,7 @@
         }
 
         /* منو */
+
         nav {
             position: fixed;
             top: 0;
@@ -102,8 +104,10 @@
         }
 
         /* هیرو */
+
         .hero {
             min-height: 100vh;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -111,8 +115,6 @@
 
             text-align: center;
             padding: 120px 20px 70px;
-
-            position: relative;
         }
 
         .tag {
@@ -170,6 +172,7 @@
         }
 
         /* دکمه‌ها */
+
         .buttons {
             display: flex;
             gap: 15px;
@@ -182,13 +185,14 @@
             padding: 16px 32px;
             border-radius: 10px;
             text-decoration: none;
-            font-weight: bol
-            d;
-            transition: .3s;
+            font-weight: bold;
+            transition: .
+            3s;
         }
 
         .primary {
             color: white;
+
             background: linear-gradient(
                 135deg,
                 #7c3aed,
@@ -201,6 +205,7 @@
 
         .primary:hover {
             transform: translateY(-5px);
+
             box-shadow:
                 0 0 45px rgba(168, 85, 247, .65);
         }
@@ -216,6 +221,7 @@
         }
 
         /* بخش عمومی */
+
         .section {
             padding: 110px 8%;
             text-align: center;
@@ -244,7 +250,64 @@
             line-height: 2;
         }
 
-        /* کارت اخبار */
+        /* شمارنده بازدید */
+
+        .visitor-box {
+            width: min(600px, 90%);
+            margin: 0 auto 55px;
+
+            padding: 20px 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124, 58, 237, .16),
+                    rgba(168, 85, 247, .06)
+                );
+
+            border: 1px solid rgba(168, 85, 247, .35);
+
+            box-shadow:
+                0 0 30px rgba(168, 85, 247, .12),
+                inset 0 0 25px rgba(168, 85, 247, .04);
+
+            transition: .3s;
+        }
+
+        .visitor-box:hover {
+            border-color: rgba(168, 85, 247, .7);
+
+            box-shadow:
+                0 0 40px rgba(168, 85, 247, .2);
+        }
+
+        .visitor-icon {
+            font-size: 30px;
+        }
+
+        .visitor-text {
+            color: #aaa;
+            font-size: 16px;
+        }
+
+        .visitor-count {
+            color: #d8b4fe;
+            font-size: 27px;
+            font-weight: bold;
+
+            text-shadow:
+                0 0 12px #a855f7;
+        }
+
+        /* اخبار */
+
         .news-grid {
             margin-top: 55px;
 
@@ -276,6 +339,7 @@
 
         .news-card::before {
             content: "";
+
             position: absolute;
 
             width: 180px;
@@ -285,6 +349,7 @@
             left: -80px;
 
             background: #a855f7;
+
             filter: blur(80px);
             opacity: .15;
         }
@@ -317,10 +382,10 @@
         }
 
         /* درباره ما */
+
         .about-box {
             max-width: 900px;
             margin: 50px auto 0;
-
             padding: 45px;
 
             border-radius: 22px;
@@ -345,6 +410,7 @@
         }
 
         /* فوتر */
+
         footer {
             padding: 40px 20px;
             text-align: center;
@@ -358,6 +424,7 @@
         }
 
         /* موبایل */
+
         @media (max-width: 800px) {
 
             nav {
@@ -381,8 +448,7 @@
             }
 
             .news-grid {
-                grid
-                -template-columns: 1fr;
+                grid-template-columns: 1fr;
             }
 
             .section {
@@ -391,6 +457,19 @@
 
             .about-box {
                 padding: 30px 20px;
+            }
+
+            .visitor-box {
+                padding: 18px 15px;
+                gap: 10px;
+            }
+
+            .visitor-count {
+                font-size: 23px;
+            }
+
+            .visitor-text {
+                font-size: 14px;
             }
         }
     </style>
@@ -478,6 +557,32 @@
         id="news"
     >
 
+        <!-- شمارنده بازدید -->
+
+        <div class="visitor-box">
+
+            <div class="visitor-icon">
+                👁️
+            </div>
+
+            <div class="visitor-text">
+                تعداد بازدید از سایت:
+            </div>
+
+            <div
+                class="visitor-count"
+                id="visitorCount"
+            >
+                0
+            </div>
+
+            <div class="visitor-text">
+                بازدید
+            </div>
+
+        </div>
+
+
         <h2>
             آخرین اخبار
         </h2>
@@ -510,18 +615,18 @@
 
 
             <div class="news-card">
-
                 <div class="news-date">
                     بروزرسانی
                 </div>
 
                 <h3>
-                    در حال ساخت
+                    شمارنده بازدید اضافه شد
                 </h3>
 
                 <p>
-                    تیم ZYVARO در حال توسعه و آماده‌سازی
-                    تجربه‌ای جدید برای بازیکنان است.
+                    از این پس تعداد بازدیدهای ثبت‌شده
+                    در این مرورگر در بالای بخش آخرین اخبار
+                    نمایش داده می‌شود.
                 </p>
 
             </div>
@@ -538,8 +643,8 @@
                 </h3>
 
                 <p>
-                    اخبار و اطلاعات جدید به‌زودی
-                    در همین بخش منتشر می‌شوند.
+                    اخبار و اطلاعات جدید ZYVARO
+                    به‌زودی در همین بخش منتشر خواهند شد.
                 </p>
 
             </div>
@@ -592,6 +697,30 @@
         — Game Studio
 
     </footer>
+
+
+    <!-- شمارنده -->
+
+    <script>
+
+        let visits = localStorage.getItem("zyvaroVisits");
+
+        if (visits === null) {
+            visits = 1;
+        } else {
+            visits = Number(visits) + 1;
+        }
+
+        localStorage.setItem(
+            "zyvaroVisits",
+            visits
+        );
+
+        document.getElementById(
+            "visitorCount"
+        ).textContent = visits;
+
+    </script>
 
 </body>
 </html>
